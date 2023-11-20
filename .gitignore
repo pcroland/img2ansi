@@ -1,0 +1,11 @@
+*png
+*jpg
+*gif
+*webp
+*nfo
+*ans
+
+# python
+.python-version
+.venv
+__pycache__
