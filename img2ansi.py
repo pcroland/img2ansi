@@ -88,7 +88,7 @@ parser.add_argument('-max', '--max-brightness',
                     help='maximum brightness of image(s)')
 parser.add_argument('-n', '--nfo',
                     action='store_true',
-                    help='output in .nfo with CP437 charset, otherwise .txt with utf-8')
+                    help='output in ".nfo" with CP437 charset, otherwise ".txt" with UTF-8')
 args = parser.parse_args()
 
 if len(sys.argv) == 1:
