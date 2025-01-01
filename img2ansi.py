@@ -86,6 +86,9 @@ parser.add_argument('-min', '--min-brightness',
 parser.add_argument('-max', '--max-brightness',
                     default='170',
                     help='maximum brightness of image(s)')
+parser.add_argument('-n', '--nfo',
+                    action='store_true',
+                    help='output in .nfo with CP437 charset, otherwise .txt with utf-8')
 args = parser.parse_args()
 
 if len(sys.argv) == 1:
@@ -122,7 +125,7 @@ bright_diff_2 = bright_diff_1 / 2
 
 for fl in args.images:
     basename = os.path.basename(fl)
-    file_output = os.path.splitext(basename)[0] + '.nfo'
+    file_output = os.path.splitext(basename)[0] + f"{'.nfo' if args.nfo else '.txt'}"
 
     img = Image.open(fl)
     img = img.convert('L')
@@ -155,7 +158,7 @@ for fl in args.images:
         file_content += '\n'
         percent = ((l + 1) / lines) * 100
         print('\r{}: {:.2f}%'.format(basename, percent), end='')
-    f = open(file_output, "w", encoding='CP437')
+    f = open(file_output, "w", encoding='cp437' if args.nfo else 'utf-8')
     f.write(file_content)
     f.close()
     print()
